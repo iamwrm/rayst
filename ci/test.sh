@@ -10,6 +10,6 @@ popd
 
 python test/t1.py
 
-pushd rayst
-LD_LIBRARY_PATH=$HOME/miniconda3/lib cargo run --package rayst --bin t1
-popd
+# pushd rayst
+# LD_LIBRARY_PATH=$HOME/miniconda3/lib cargo run --package rayst --bin t1
+# popd

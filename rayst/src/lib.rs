@@ -1,4 +1,3 @@
-use crossbeam::channel::{unbounded, Receiver, Sender};
 use pyo3::prelude::*;
 use pyo3::types::PyAny;
 use std::sync::Arc;
@@ -22,16 +21,27 @@ fn call_2_times(py_callback: &PyAny) -> PyResult<()> {
 
     let arc_callback = Arc::new(callback);
 
+    // let mut thread_j_v = vec![];
+
     for _ in 0..5 {
         let c_arc_callback = arc_callback.clone();
-        thread::spawn(move || {
-            Python::with_gil(|py| {
-                let _ = c_arc_callback.call0(py);
-            });
+        // let j = thread::spawn(move || {
+        println!("calling callback in rust");
+
+        let py_result = Python::with_gil(|py| -> PyResult<()> {
+            println!("calling callback in rust");
+            let _ = c_arc_callback.call0(py)?;
+            Ok(())
         });
+        py_result.unwrap();
+        // });
+
+        // thread_j_v.push(j);
     }
 
-    std::thread::sleep(std::time::Duration::from_secs(6));
+    // for i in thread_j_v {
+    //     i.join().unwrap();
+    // }
 
     Ok(())
 }

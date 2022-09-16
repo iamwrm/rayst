@@ -3,7 +3,7 @@ import time
 
 
 def func_in_py():
-    time.sleep(5)
+    # time.sleep(0.1)
     print("func_in_py")
 
 
