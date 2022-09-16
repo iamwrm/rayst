@@ -1,0 +1,5 @@
+tasks:
+  - name: setup
+    init: |
+      bash ci/setup.sh
+
