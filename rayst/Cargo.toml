@@ -7,5 +7,8 @@ edition = "2021"
 name = "rayst"
 crate-type = ["cdylib"]
 
-[dependencies]
-pyo3 = { version = "0.17.1", features = ["extension-module"] }
+[dependencies.pyo3]
+git = "https://github.com/pyo3/pyo3"
+
+[features]
+extension-module = ["pyo3/extension-module"]

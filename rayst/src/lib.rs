@@ -1,4 +1,5 @@
 use pyo3::prelude::*;
+use pyo3::types::{PyAny, PyDict, PyList};
 
 /// Formats the sum of two numbers as string.
 #[pyfunction]
@@ -11,10 +12,16 @@ fn multiply(a: isize, b: isize) -> PyResult<isize> {
     Ok(a * b)
 }
 
+// #[pyfunction]
+// fn call_2_times(a: PyAny) -> PyResult<isize> {
+//     Ok(a * b)
+// }
+
 /// A Python module implemented in Rust.
 #[pymodule]
 fn rayst(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(sum_as_string, m)?)?;
     m.add_function(wrap_pyfunction!(multiply, m)?)?;
+    // m.add_function(wrap_pyfunction!(call_2_times, m)?)?;
     Ok(())
 }
