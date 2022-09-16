@@ -7,6 +7,10 @@ edition = "2021"
 name = "rayst"
 crate-type = ["cdylib"]
 
+[dependencies]
+rayon = "1.5.3"
+crossbeam = "0.8.2"
+
 [dependencies.pyo3]
 git = "https://github.com/pyo3/pyo3"
 
