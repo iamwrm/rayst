@@ -14,8 +14,10 @@ fn multiply(a: isize, b: isize) -> PyResult<isize> {
 
 #[pyfunction]
 fn call_2_times(func: &PyAny) -> PyResult<()> {
-    func.call0()?;
-    func.call0()?;
+    (0..2).for_each(|_| {
+        println!("calling");
+        func.call0().unwrap();
+    });
     Ok(())
 }
 
