@@ -19,3 +19,6 @@ jobs:
       - name: Setup
         run: |
           bash ci/setup.sh
+      - name: test
+        run: |
+          bash ci/test.sh
