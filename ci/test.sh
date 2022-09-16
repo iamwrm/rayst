@@ -4,7 +4,7 @@ eval "$($CONDA_PATH/bin/conda shell.bash hook)"
 pip install maturin
 
 pushd rayst 
-maturin develop
+maturin develop --features "extension-module"
 popd
 
 

@@ -12,16 +12,18 @@ fn multiply(a: isize, b: isize) -> PyResult<isize> {
     Ok(a * b)
 }
 
-// #[pyfunction]
-// fn call_2_times(a: PyAny) -> PyResult<isize> {
-//     Ok(a * b)
-// }
+#[pyfunction]
+fn call_2_times(func: &PyAny) -> PyResult<()> {
+    func.call0()?;
+    func.call0()?;
+    Ok(())
+}
 
 /// A Python module implemented in Rust.
 #[pymodule]
 fn rayst(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(sum_as_string, m)?)?;
     m.add_function(wrap_pyfunction!(multiply, m)?)?;
-    // m.add_function(wrap_pyfunction!(call_2_times, m)?)?;
+    m.add_function(wrap_pyfunction!(call_2_times, m)?)?;
     Ok(())
 }
